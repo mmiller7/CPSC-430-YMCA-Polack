@@ -10,7 +10,37 @@
 		<div id="wrap">
 			<?php include("header.php"); ?>
 			<?php echo 'This is the register page'; ?>
+			
+			<form method ="post" action="confirmRegister.php">
+			<table>
+			<tr>
+			<td>Family Name:</td>
+			<td>
+			<input type="text" name="familyName" value="" maxlength="50" />
+			</td>
+			</tr>
+			<tr>
+			<td>Email Address:</td>
+			<td>
+			<input type="text" name="emailAddress" value="" maxLength="50"/>
+			</td>
+			</tr>
+			<tr>
+			<td>Confirm Email Address:</td>
+			<td>
+			<input type="text" name="confirmEmail" value="" maxLength="50"/>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<input type="submit" value="Register Account">
+			</td>
+			</tr>
+			</form>
+			
 			<?php include("footer.html"); ?>
 		</div>
+		
+		
 	</body>
 </html>
