@@ -2,8 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <?php
-	$yourname = check_input($_POST['familyName'], "Family Name is required.");
+	$familyName = check_input($_POST['familyName'], "Family Name is required.");
 	$email    = check_input($_POST['emailAddress'],"An Email Address is required.");
+	$confirmEmail    = check_input($_POST['confirmEmail'],"Please confirm e-mail address.");
+	$pw    = check_input($_POST['password'],"A password is required.");
+	$confirmPw = check_input($_POST['confirmPassword'],"Please confirm password.");
   ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
@@ -16,9 +19,15 @@
 	
 			The family name for your account is: <?php echo $_POST['familyName']; ?><br />
 			The e-mail address for your account is: <?php echo $_POST['emailAddress']; ?><br />
-
-	
-	
+			<?php
+			include "dbconnect.php";
+			$query= "INSERT INTO user_acccount(family_name,email) VALUES
+			('".$familyName."','".$confirmEmail."','".$pw."')";
+			echo "<br>", $query, "<br>";
+			$result = mysqli_query($db, $query) or die("Error Querying Database");
+			mysqli_close($db);
+			?>
+   			
 			<?php include("footer.html"); ?>
 		</div>
 		

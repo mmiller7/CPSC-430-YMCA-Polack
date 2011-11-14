@@ -16,7 +16,7 @@
 			<tr>
 			<td>Family Name:</td>
 			<td>
-			<input type="text" name="familyName" value="" maxlength="50" />
+			<input type="text" name="familyName" value="" maxlength="20" />
 			</td>
 			</tr>
 			<tr>
@@ -31,6 +31,20 @@
 			<input type="text" name="confirmEmail" value="" maxLength="50"/>
 			</td>
 			</tr>
+			<tr>
+			<td>Desired Password:</td>
+			<td>
+			<input type="text" name="password" value="" maxLength="20"/>
+			</td>
+			</tr>
+			
+			<tr>
+			<td>Retype Password:</td>
+			<td>
+			<input type="text" name="confirmPassword" value="" maxLength="20"/>
+			</td>
+			</tr>
+			
 			<tr>
 			<td>
 			<input type="submit" value="Register Account">
