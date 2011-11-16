@@ -21,7 +21,7 @@
 			The e-mail address for your account is: <?php echo $_POST['emailAddress']; ?><br />
 			<?php
 			include "dbconnect.php";
-			$query= "INSERT INTO user_acccount(family_name,email) VALUES
+			$query= "INSERT INTO user_account(family_name,email,password) VALUES
 			('".$familyName."','".$confirmEmail."','".$pw."')";
 			echo "<br>", $query, "<br>";
 			$result = mysqli_query($db, $query) or die("Error Querying Database");
