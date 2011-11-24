@@ -23,7 +23,7 @@
 			include "dbconnect.php";
 			$query= "INSERT INTO user_account(family_name,email,password) VALUES
 			('".$familyName."','".$confirmEmail."','".$pw."')";
-			echo "<br>", $query, "<br>";
+			//echo "<br>", $query, "<br>";
 			$result = mysqli_query($db, $query) or die("Error Querying Database");
 			mysqli_close($db);
 			?>
