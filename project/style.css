@@ -13,7 +13,7 @@ form label {
 		/*background-image: url('Pictures/BGpic.jpg');*/
 		background-repeat: repeat-x;
 		color: black;
-		text-align: center;
+		/*text-align: center;*/
 	}
 	A:link {color: white;}
 	A:visited {color: white;}
@@ -251,6 +251,12 @@ form label {
 	{
 		background-color: lightblue;
 		color: black;
+
+	}
+	input[type=submit][disabled]
+	{
+		background-color: lightgray;
+		color: gray;
 
 	}
 	

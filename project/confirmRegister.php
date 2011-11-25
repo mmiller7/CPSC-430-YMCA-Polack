@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<?php include("anti_xss.php"); ?>
 
 <?php
 //Input validation
@@ -13,11 +14,32 @@ if(!preg_match('/..*@..*\...*/i',$_POST['emailAddress'])) //checks for x@x.x whe
 if($_POST['emailAddress'] != $_POST['confirmEmail'])
 	$errorMessage=$errorMessage.'<li>Confirmation email does not match</li>'."\n";
 
-if(strlen(trim($_POST['password'])) < 4)
+if(strlen($_POST['password']) < 4)
 	$errorMessage=$errorMessage.'<li>Password must be at least 4 characters long</li>'."\n";
 
 if($_POST['password']!=$_POST['confirmPassword'])
 	$errorMessage=$errorMessage.'<li>Confirmation password does not match</li>'."\n";
+
+//query sql for familyName
+$familyName=anti_xss($_POST['familyName']);
+include "dbconnect.php";
+$escapedFamilyName=mysqli_real_escape_string($db,$familyName);
+$compareQuery="SELECT family_name FROM user_account ";
+$compareResult=mysqli_query($db, $compareQuery) or die("Error Querying Database");
+if(!isset($checkName))
+	$checkName=NULL;
+while($row=mysqli_fetch_array($compareResult) and $checkName!=$familyName)
+{
+	$checkName=$row['family_name'];
+}
+
+
+//test if user exists
+if($checkName==$familyName)
+{
+	$familyNameExists=true;
+	$errorMessage=$errorMessage.'<li>The family name already exists</li>'."\n";
+}
 
 if(strlen(trim($errorMessage)) > 0)
 {
@@ -31,11 +53,14 @@ if(strlen(trim($errorMessage)) > 0)
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <?php
-	$familyName = check_input($_POST['familyName'], "Family Name is required.");
-	$email    = check_input($_POST['emailAddress'],"An Email Address is required.");
-	$confirmEmail    = check_input($_POST['confirmEmail'],"Please confirm e-mail address.");
-	$pw    = check_input($_POST['password'],"A password is required.");
-	$confirmPw = check_input($_POST['confirmPassword'],"Please confirm password.");
+	//$familyName = check_input($_POST['familyName'], "Family Name is required.");
+	//$email    = check_input($_POST['emailAddress'],"An Email Address is required.");
+	//$confirmEmail    = check_input($_POST['confirmEmail'],"Please confirm e-mail address.");
+	//$pw    = check_input($_POST['password'],"A password is required.");
+	//$confirmPw = check_input($_POST['confirmPassword'],"Please confirm password.");
+	$familyName=anti_xss($_POST['familyName']);
+	$email=anti_xss($_POST['emailAddress']);
+	$pw=anti_xss($_POST['password']);
   ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
