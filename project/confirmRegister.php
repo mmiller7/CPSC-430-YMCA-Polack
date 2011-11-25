@@ -60,7 +60,7 @@ if(strlen(trim($errorMessage)) > 0)
 	//$confirmPw = check_input($_POST['confirmPassword'],"Please confirm password.");
 	$familyName=anti_xss($_POST['familyName']);
 	$email=anti_xss($_POST['emailAddress']);
-	$pw=anti_xss($_POST['password']);
+	$pw=$_POST['password']; //don't anti-xss password because we don't care what they put.  It'll be mysql-escaped later and it's never printed so it isn't a script issue.  They can have all spaces for all we care so we don't want to change what they typed either.
   ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>

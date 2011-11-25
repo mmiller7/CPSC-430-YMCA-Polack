@@ -11,14 +11,26 @@ include "dbconnect.php";
 	<body>
 		<div id="wrap">
 			<?php include("header.php"); ?>
-			<form method="post" action="confirmLogin.php">
-				<label for="username">Username:</label>
-				<input type="text" id="username" name="username" /><br />
-				<label for="pw">Password:</label>
-				<!---type password?--->
-				<input type="password" id="pw" name="pw" /><br />
+			<center>
+			<?php
+			if(isset($errorMessage))
+			{
+				echo '<br><font color="red"><b>Error: </b>',$errorMessage,'</font><br>',"\n";
+			}
+			?>
+				<br>
+				Please log in:
+				<form method="post" action="confirmLogin.php">
+				<table>
+				<tr><td>Family Name:</td>
+				<td><input type="text" id="familyName" name="familyName" /></td></tr>
+				<tr><td>Password:</td>
+				<!-- type password? < if this is a question, yes.  It works just like type=text but shows stars instead of the real letters. -->
+				<td><input type="password" id="password" name="password" /></td></tr>
+				</table>
+				<?php if(isset($sendTo)) { ?><input type="hidden" name="sendTo" valule="<?php echo $sendTo ?>"><?php } ?>
 				<input type="submit" value="Login" name="submit" />
-		    </form>
+		    </form></center>
 		  	<?php include("footer.html"); ?>
 		</div>
 	</body>

@@ -1,5 +1,6 @@
 <div id="Navigation">
 	<?php
+	/*
 	if(!isset($_SESSION["name"]))
 	{
 	?>
@@ -14,6 +15,8 @@
 	<?php
 	}
 	else
+	*/
+	if(isset($_SESSION["name"]))
 	{
 	?>
 	<a href="home.php">Home</a>

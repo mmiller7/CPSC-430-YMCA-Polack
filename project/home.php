@@ -1,4 +1,9 @@
 <?php
+if(!isset($_SESSION["name"]))
+{
+  include("login.php");
+	exit(0);
+}
 session_start();
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -11,7 +16,7 @@ session_start();
 	<body>
 		<div id="wrap">
 			<?php 	include("loginheader.php"); 
-					if(isset($_POST['username'])){ echo 'Welcome '; echo $_POST["username"]; echo '!'; }
+					if(isset($SESSION['name'])){ echo 'Welcome '; echo $SESSION["name"]; echo ' family!'; }
 					else{ echo 'Welcome Home!'; }
 					include("footer.html"); 
 			?>
