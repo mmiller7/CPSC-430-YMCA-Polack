@@ -1,5 +1,5 @@
 <?php
-	if(($_SERVER['HTTP_HOST'] == "swimrays.mwcpsc.org") || preg_match('/.*bluehost\.com/i',gethostbyaddr($_SERVER['HTTP_HOST'])) || preg_match('/.*bluehost\.com/i',$_SERVER['HTTP_HOST']))
+	if(($_SERVER['HTTP_HOST'] == "swimrays.mwcpsc.org") || preg_match('/.*bluehost\.com/i',@gethostbyaddr($_SERVER['HTTP_HOST'])) || preg_match('/.*bluehost\.com/i',$_SERVER['HTTP_HOST']))
 	{
 		//For Bluehost
 		$db = mysqli_connect('localhost', 'mwcpscor_swimray', 'swimrayuser','mwcpscor_swimrays_db');

@@ -23,9 +23,9 @@ include "dbconnect.php";
 			}
 			?>
 				<br>
-				Please log in:
+				Please log in:</center>
 				<form method="post" action="confirmLogin.php">
-				<table>
+				<table align=center>
 				<tr><td>Family Name:</td>
 				<td><input type="text" id="familyName" name="familyName" /></td></tr>
 				<tr><td>Password:</td>
@@ -33,8 +33,8 @@ include "dbconnect.php";
 				<td><input type="password" id="password" name="password" /></td></tr>
 				</table>
 				<?php if(isset($sendTo)) { ?><input type="hidden" name="sendTo" valule="<?php echo $sendTo ?>"><?php } ?>
-				<input type="submit" value="Login" name="submit" />
-		    </form></center>
+				<center><input type="submit" value="Login" name="submit" /></center>
+		    </form>
 		  	<?php include("footer.html"); ?>
 		</div>
 	</body>

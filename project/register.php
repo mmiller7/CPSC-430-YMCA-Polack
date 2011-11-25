@@ -90,9 +90,8 @@
 				echo '<br><font color="red"><b>Error - the following entries need to be fixed:</b><ul>',$errorMessage,'</ul></font><br>',"\n";
 			}
 			?>
-			<center>
 			<form name="register" method ="post" action="confirmRegister.php" onsubmit="document.register.submit.disabled=true;document.register.submit.value='Processing...'">
-			<table>
+			<table align=center>
 			<tr>
 			<td>Family Name:</td>
 			<td>
@@ -131,7 +130,6 @@
 			</td>
 			</tr>
 			</form>
-			</center>
 			
 			<?php include("footer.html"); ?>
 		</div>
