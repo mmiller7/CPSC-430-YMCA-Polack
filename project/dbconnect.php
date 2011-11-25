@@ -1,13 +1,8 @@
 <?php
-	if($_SERVER['HTTP_HOST'] == "swimrays.mwcpsc.org")
+	if(($_SERVER['HTTP_HOST'] == "swimrays.mwcpsc.org") || preg_match('/.*bluehost\.com/i',gethostbyaddr($_SERVER['HTTP_HOST'])) || preg_match('/.*bluehost\.com/i',$_SERVER['HTTP_HOST']))
 	{
 		//For Bluehost
 		$db = mysqli_connect('localhost', 'mwcpscor_swimray', 'swimrayuser','mwcpscor_swimrays_db');
-	}
-	else if($_SERVER['HTTP_HOST'] == "secure.bluehost.com")
-	{
-		//For Bluehost
-		$db = mysqli_connect('box546.bluehost.com', 'mwcpscor_swimray', 'swimrayuser','mwcpscor_swimrays_db');
 	}
 	else
 	{
