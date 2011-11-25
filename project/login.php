@@ -17,6 +17,10 @@ include "dbconnect.php";
 			{
 				echo '<br><font color="red"><b>Error: </b>',$errorMessage,'</font><br>',"\n";
 			}
+			if(isset($nonErrorMessage))
+			{
+				echo '<br>',$nonErrorMessage,'<br>',"\n";
+			}
 			?>
 				<br>
 				Please log in:

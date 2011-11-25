@@ -61,6 +61,22 @@ if(strlen(trim($errorMessage)) > 0)
 	$familyName=anti_xss($_POST['familyName']);
 	$email=anti_xss($_POST['emailAddress']);
 	$pw=$_POST['password']; //don't anti-xss password because we don't care what they put.  It'll be mysql-escaped later and it's never printed so it isn't a script issue.  They can have all spaces for all we care so we don't want to change what they typed either.
+
+
+	
+	//Actually put them in the database
+	include "dbconnect.php";
+	$query= "INSERT INTO user_account(family_name,email,password) VALUES
+	('".$familyName."','".$email."','".$pw."')";
+	$result = mysqli_query($db, $query) or die("Error Querying Database");
+	mysqli_close($db);
+	
+	//Rather than making them click stuff, just send them to the login page!
+	$nonErrorMessage="Thank you for registering.";
+	unset($errorMessage);
+	include("login.php");
+
+	/*
   ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
@@ -73,19 +89,19 @@ if(strlen(trim($errorMessage)) > 0)
 	
 			The family name for your account is: <?php echo $_POST['familyName']; ?><br />
 			The e-mail address for your account is: <?php echo $_POST['emailAddress']; ?><br />
-			<?php
-			include "dbconnect.php";
-			$query= "INSERT INTO user_account(family_name,email,password) VALUES
-			('".$familyName."','".$email."','".$pw."')";
-			$result = mysqli_query($db, $query) or die("Error Querying Database");
-			mysqli_close($db);
-			?>
    			
 			<?php include("footer.html"); ?>
 		</div>
 		
 		
 	</body>
+
+
+<?php
+*/
+?>
+
+
 	<?php
 	 function check_input($data, $problem='')
 	{
