@@ -24,8 +24,8 @@ $pw=$_POST['pw'];
 				if ($row = mysqli_fetch_array($result)){
 				
 				$_SESSION['name']=$name;
-				$_SESSION['pw']=$pw;
-				
+				//don't store password in session, could be unsecure
+
 				echo "<p><font color=black>Thanks for logging in, $name family user</font></p>\n";
 				echo "<p><a href=\"home.php\"><font color=blue>Continue</font></a></p>";
 		

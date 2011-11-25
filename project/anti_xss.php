@@ -15,6 +15,9 @@ if(!$anti_xss_function_exists)
 		$raw = str_replace("\r",'',$raw);
 		$raw = str_replace("\n",'',$raw);
 
+		//clean up any leading or trailing spaces
+		$raw = trim($raw);
+
 		//return the result
 		return $raw;
 	}
