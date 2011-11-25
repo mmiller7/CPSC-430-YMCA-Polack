@@ -1,10 +1,10 @@
 <?php
+session_start();
 if(!isset($_SESSION["name"]))
 {
   include("login.php");  
 	exit(0);
 }
-session_start();
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
