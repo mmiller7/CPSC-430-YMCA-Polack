@@ -76,8 +76,7 @@ if(strlen(trim($errorMessage)) > 0)
 			<?php
 			include "dbconnect.php";
 			$query= "INSERT INTO user_account(family_name,email,password) VALUES
-			('".$familyName."','".$confirmEmail."','".$pw."')";
-			//echo "<br>", $query, "<br>";
+			('".$familyName."','".$email."','".$pw."')";
 			$result = mysqli_query($db, $query) or die("Error Querying Database");
 			mysqli_close($db);
 			?>
