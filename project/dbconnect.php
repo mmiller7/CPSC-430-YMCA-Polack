@@ -4,6 +4,11 @@
 		//For Bluehost
 		$db = mysqli_connect('localhost', 'mwcpscor_swimray', 'swimrayuser','mwcpscor_swimrays_db');
 	}
+	else if($_SERVER['HTTP_HOST'] == "secure.bluehost.com")
+	{
+		//For Bluehost
+		$db = mysqli_connect('box546.bluehost.com', 'mwcpscor_swimray', 'swimrayuser','mwcpscor_swimrays_db');
+	}
 	else
 	{
 		//For local testing
