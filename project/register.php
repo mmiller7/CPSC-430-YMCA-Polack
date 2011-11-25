@@ -10,38 +10,45 @@
 		<div id="wrap">
 			<?php include("header.php"); ?>
 			<?php echo 'This is the register page'; ?>
-			
+		
+			<?php
+			if(isset($errorMessage))
+			{
+				echo '<br><font color="red"><b>Error - the following entries need to be fixed:</b><ul>',$errorMessage,'</ul></font><br>',"\n";
+			}
+			?>
+
 			<form method ="post" action="confirmRegister.php">
 			<table>
 			<tr>
 			<td>Family Name:</td>
 			<td>
-			<input type="text" name="familyName" value="" maxlength="20" />
+			<input type="text" name="familyName" value="<?php echo $_POST['familyName'] ?>" maxlength="20" />
 			</td>
 			</tr>
 			<tr>
 			<td>Email Address:</td>
 			<td>
-			<input type="text" name="emailAddress" value="" maxLength="50"/>
+			<input type="text" name="emailAddress" value="<?php echo $_POST['emailAddress'] ?>" maxLength="50"/>
 			</td>
 			</tr>
 			<tr>
 			<td>Confirm Email Address:</td>
 			<td>
-			<input type="text" name="confirmEmail" value="" maxLength="50"/>
+			<input type="text" name="confirmEmail" value="<?php echo $_POST['confirmEmail'] ?>" maxLength="50"/>
 			</td>
 			</tr>
 			<tr>
 			<td>Desired Password:</td>
 			<td>
-			<input type="text" name="password" value="" maxLength="20"/>
+			<input type="password" name="password" maxLength="20"/> (minimum 4 characters)
 			</td>
 			</tr>
 			
 			<tr>
 			<td>Retype Password:</td>
 			<td>
-			<input type="text" name="confirmPassword" value="" maxLength="20"/>
+			<input type="password" name="confirmPassword" maxLength="20"/>
 			</td>
 			</tr>
 			

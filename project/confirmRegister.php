@@ -1,4 +1,33 @@
 <?php session_start(); ?>
+
+<?php
+//Input validation
+//This MUST come before everything, including the header!
+$errorMessage="";
+if(strlen(trim($_POST['familyName'])) < 3)
+	$errorMessage=$errorMessage.'<li>Family Name must be at least 3 letters long</li>'."\n";
+
+if(!preg_match('/..*@..*\...*/i',$_POST['emailAddress'])) //checks for x@x.x where x is at least 1 character
+	$errorMessage=$errorMessage.'<li>Your email address is invalid</li>'."\n";
+
+if($_POST['emailAddress'] != $_POST['confirmEmail'])
+	$errorMessage=$errorMessage.'<li>Confirmation email does not match</li>'."\n";
+
+if(strlen(trim($_POST['password'])) < 4)
+	$errorMessage=$errorMessage.'<li>Password must be at least 4 characters long</li>'."\n";
+
+if($_POST['password']!=$_POST['confirmPassword'])
+	$errorMessage=$errorMessage.'<li>Confirmation password does not match</li>'."\n";
+
+if(strlen(trim($errorMessage)) > 0)
+{
+	include("register.php");
+	exit(0);
+}
+//End input validation
+?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <?php
