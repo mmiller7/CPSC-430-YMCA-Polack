@@ -1,5 +1,5 @@
 <?php
-	if($SERVER['HTTP_HOST'] == "swimrays.mwcpsc.org")
+	if($_SERVER['HTTP_HOST'] == "swimrays.mwcpsc.org")
 	{
 		//For Bluehost
 		$db = mysqli_connect('localhost', 'mwcpscor_swimray', 'swimrayuser','mwcpscor_swimrays_db');
