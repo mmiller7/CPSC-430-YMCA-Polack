@@ -1,4 +1,5 @@
-<?php session_start();
+<?php 
+if(!isset($_SESSION)){session_start();} 
 include "dbconnect.php";
 include("anti_xss.php");
 $name=anti_xss($_POST['familyName']);

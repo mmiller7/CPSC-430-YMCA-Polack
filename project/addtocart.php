@@ -1,17 +1,15 @@
 <?php
 //This page adds an item to the user's cart and then shows them their current cart
-session_start();
+if(!isset($_SESSION)){session_start();} 
 
 $debug=false;
 
-//Get cart from the session
-$cart=$_SESSION['cart'];
-
 //Create empty cart if it doesn't exist
-if(!isset($cart))
-{
+if(!isset($_SESSION['cart'])){
 	if($debug) echo "Init cart<br>\n";
 	$cart=array();
+}else{//Get cart from the session
+	$cart=$_SESSION['cart'];
 }
 
 //Get the card id and quantity
