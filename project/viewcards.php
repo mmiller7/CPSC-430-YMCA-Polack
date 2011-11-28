@@ -30,6 +30,7 @@ if(!isset($_SESSION["name"]))
 				$cvalue = $row['card_value'];
 				$fvalue = $row['fundraise_value'];
 				echo "<form name=\"ordercard\" action=\"addtocart.php\" method=\"POST\">";
+					echo "<input type=hidden name=gc_id value=".$row['gc_id'].">\n";
 					echo "<p><table align=center frame = border rules=all border=1>";
 					echo "<tr><th colspan = 1>Store Name</th><th colspan = 1>Value</th><th colspan = 1>Raised</th><th colspan = 1>Quantity</th><th colspan = 1></th></tr>\n";
 					echo "<tr><td>$sname</td><td>$$cvalue</td><td>$fvalue</td>";
