@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "dbconnect.php";
 if(!isset($_SESSION["name"]))
 {
   include("login.php");
@@ -11,12 +12,24 @@ if(!isset($_SESSION["name"]))
 <html>
 	<head>
 		<link href="style.css" rel="stylesheet" type="text/css">
-		<title>Stingray Welcome</title>
+		<title>Gift Card Store</title>
 	</head>
 	<body>
 		<div id="wrap">
 			<?php include("loginheader.php"); ?>
-			<?php echo 'This is the order giftcard page'; ?>
+			<p><center><b>Card Categories</b></center></p>
+			<?php
+			echo "<table align=center>";
+			$query="SELECT card_type FROM card_type";
+			$result=mysqli_query($db, $query) or die("Error Querying Database");
+			while($row=mysqli_fetch_array($result)){
+				$card = $row['card_type'];
+				$cleanedUp = str_replace("_"," ",$row['card_type']);
+				$cleanedUp = ucwords($cleanedUp);
+				echo "<tr><td><a href=\"viewCards.php?category =$card\">$cleanedUp</a></td></tr>";
+			}
+			echo "</table>";
+			?>
 			<?php include("footer.html"); ?>
 		</div>
 	</body>
