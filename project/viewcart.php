@@ -16,7 +16,28 @@ if(!isset($_SESSION["name"]))
 	<body>
 		<div id="wrap">
 			<?php include("loginheader.php"); ?>
-			<?php echo 'This is the view cart page'; ?>
+			<?php //echo 'This is the view cart page';
+			
+			if(isset($_SESSION['cart']))
+			{
+				$found=false;
+				foreach($cart as $item)
+				{
+					$found=true;
+					echo $item['qty']." of card ".$item['gc_id']."<br>\n";
+				}
+				if(!$found)
+				{
+					echo 'Your cart is empty.';
+				}
+			}
+			else
+			{
+				echo 'Your cart is empty.';
+			}
+			
+			?>
+
 			<?php include("footer.html"); ?>
 		</div>
 	</body>
