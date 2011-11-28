@@ -30,17 +30,16 @@ if(!isset($_SESSION["name"]))
 				$cvalue = $row['card_value'];
 				$fvalue = $row['fundraise_value'];
 				echo "<form name=\"ordercard\" action=\"addtocart.php\" method=\"POST\">";
-					echo "<p><table align=center border=1>";
-					echo "<tr><th rowspan = 5><th colspan = 3>$sname</th></tr>";
-					echo "<tr><th align = left>Value<td>$$cvalue</td></th></tr>";
-					echo "<tr><th align = left>Raise Amount<td>$$fvalue</td></th></tr>";
-					echo "<tr><th align = left>Quantity";
+					echo "<p><table align=center frame = border rules=all border=1>";
+					echo "<tr><th rowspan=2><th colspan = 1>Store Name<th rowspan=2><th colspan = 1>Value<th rowspan=2><th colspan = 1>Raised
+					<th rowspan=2><th colspan = 1>Quantity<th rowspan=2><th colspan = 1>";
+					echo "<tr><th>$sname<td>$$cvalue<td>$fvalue";
 						echo "<td><select>";
 						for($i = 1; $i <=10; $i++){
 							echo"<option value=$i>$i</option>";
 						}
-						echo "</select></td></th></tr>";
-					echo "<tr><th align = center colspan =3><input type=\"submit\" name=\"submit\" value=\"Add to Cart\"></th></tr>";
+						echo "</select>";
+					echo "<td><input type=\"submit\" name=\"submit\" value=\"Add to Cart\">";
 					echo "</table></p>";
 				echo "</form>";
 			}
