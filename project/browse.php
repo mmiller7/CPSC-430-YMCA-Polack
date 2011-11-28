@@ -19,16 +19,16 @@ if(!isset($_SESSION["name"]))
 			<?php include("loginheader.php"); ?>
 			<p><center><b>Card Categories</b></center></p>
 			<?php
-			echo "<table align=center>";
+			echo "<table align=center>\n";
 			$query="SELECT card_type FROM card_type";
 			$result=mysqli_query($db, $query) or die("Error Querying Database");
 			while($row=mysqli_fetch_array($result)){
 				$card = $row['card_type'];
 				$cleanedUp = str_replace("_"," ",$row['card_type']);
 				$cleanedUp = ucwords($cleanedUp);
-				echo "<tr><td><a href=\"viewCards.php?category =$card\">$cleanedUp</a></td></tr>";
+				echo "<tr><td><a href=\"viewcards.php?category=$card\">$cleanedUp</a></td></tr>\n";
 			}
-			echo "</table>";
+			echo "</table>\n";
 			?>
 			<?php include("footer.html"); ?>
 		</div>
