@@ -31,15 +31,14 @@ if(!isset($_SESSION["name"]))
 				$fvalue = $row['fundraise_value'];
 				echo "<form name=\"ordercard\" action=\"addtocart.php\" method=\"POST\">";
 					echo "<p><table align=center frame = border rules=all border=1>";
-					echo "<tr><th rowspan=2><th colspan = 1>Store Name<th rowspan=2><th colspan = 1>Value<th rowspan=2><th colspan = 1>Raised
-					<th rowspan=2><th colspan = 1>Quantity<th rowspan=2><th colspan = 1>";
-					echo "<tr><th>$sname<td>$$cvalue<td>$fvalue";
-						echo "<td><select>";
+					echo "<tr><th colspan = 1>Store Name</th><th colspan = 1>Value</th><th colspan = 1>Raised</th><th colspan = 1>Quantity</th><th colspan = 1></th></tr>\n";
+					echo "<tr><td>$sname</td><td>$$cvalue</td><td>$fvalue</td>";
+						echo "<td><select name=qty>";
 						for($i = 1; $i <=10; $i++){
 							echo"<option value=$i>$i</option>";
 						}
 						echo "</select>";
-					echo "<td><input type=\"submit\" name=\"submit\" value=\"Add to Cart\">";
+					echo "</td><td><input type=\"submit\" name=\"submit\" value=\"Add to Cart\"></td></tr>";
 					echo "</table></p>";
 				echo "</form>";
 			}
