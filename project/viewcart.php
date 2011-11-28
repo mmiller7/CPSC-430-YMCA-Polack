@@ -37,7 +37,10 @@ if(!isset($_SESSION["name"]))
 			}
 			
 			?>
-
+			</br>
+			<form name="orderConfirmation" action="confirmOrder.php" method="POST">
+			<input type="submit" name="confirmOrder" value="Confirm Order">
+			<!-- <a href="confirmOrder.php">Confirm Order</a> -->
 			<?php include("footer.html"); ?>
 		</div>
 	</body>
