@@ -20,69 +20,76 @@ if(!isset($_SESSION["name"]))
 		<?php include("loginheader.php"); ?>
 		
 		<?php
+		$totalDue=0;
+		$totalRaised=0;
 		if(isset($_SESSION['cart']))
 			{
+				echo "<br><center>Your order has been placed.</center><br>
+				<table align=center border=1 cellpadding=15>
+				<tr>
+				<th>Store Name</th>
+				<th>Card Value</th>
+				<th>Card Fundraise Value</th>
+				<th>Card Type</th>
+				<th>Quantity</th>
+				</tr>";
 				$found=false;
 				foreach($_SESSION['cart'] as $item)
 				{
 					$found=true;
-					echo $item['qty']." of card ".$item['gc_id']."<br>\n";
+					//echo $item['qty']." of card ".$item['gc_id']."<br>\n";
 					
 					
 					
 					//construct query
+					$gc_id=mysqli_real_escape_string($db,$item['gc_id']);
 					$query= "SELECT store_name,card_value,fundraise_value,type_id
-					FROM available_cards WHERE gc_id='".$item['gc_id']."'";
+					FROM available_cards WHERE gc_id='".$gc_id."'";
 					//query database
 					$result = mysqli_query($db, $query) or die("Error Querying Database");
 					
 					//print out results
-					echo "<table border=1 cellpadding=15>
-					<tr>
-					<th>Store Name</th>
-					<th>Card Value</th>
-					<th>Card Fundraise Value</th>
-					<th>Card Type</th>
-					<th>Quantity</th>
-					<!-- <th>Usage</th> -->
-					</tr>";
 					
 					while($row = mysqli_fetch_array($result))
 	   				{
-	   				echo "<tr><td></td></tr>";
-	  			    echo "<tr>";
-					echo "<td>" . $row['store_name'] . "</td>";
-	   				echo "<td>" . $row['card_value'] . "</td>";
-	   				echo "<td>" . $row['fundraise_value'] . "</td>";
-	   				echo "<td>" . $row['type_id'] . "</td>";
-	   				echo "<td>" . $item['qty'] .	"</td>";
-	  				echo "</tr>";
-	   				echo "<tr>";
-	   				echo "</tr>";
-	   				//declare variables for insert query
-	   				$gc_id=$item['gc_id'];
-	   				$fundraise_value=$row['fundraise_value'];
-	   				$card_quantity=$item['qty'];
-	   				
-	   				$query1= "INSERT INTO pending_orders
-					(gc_id, fund_raise_value, card_quantity)
-					VALUES('".$gc_id."','".$fundraise_value."','".$card_quantity."')";
-					$result1 = mysqli_query($db, $query1) or die("Error Querying Database");
-					
+							echo "<tr>\n";
+							echo "<td>" . $row['store_name'] . "</td>\n";
+							echo "<td>$" . $row['card_value'] . "</td>\n";
+							echo "<td>$" . $row['fundraise_value'] . "</td>\n";
+							echo "<td>" . $row['type_id'] . "</td>\n";
+							echo "<td>" . $item['qty'] .	"</td>\n";
+							echo "</tr>\n";
+							
+							//Increment Total Counter
+							$totalDue+=($row['card_value']*$item['qty']);
+							$totalRaised+=($row['fundraise_value']*$item['qty']);
+							
+							//declare variables for insert query
+							$gc_id=$item['gc_id'];
+							$fundraise_value=$row['fundraise_value'];
+							$card_quantity=$item['qty'];
+							
+							$query1= "INSERT INTO pending_orders (gc_id, fund_raise_value, card_quantity)	VALUES('".$gc_id."','".$fundraise_value."','".$card_quantity."')";
+							$result1 = mysqli_query($db, $query1) or die("Error Querying Database");
+						
 					
 	  				}
-	   				echo "</table>";
 					
 					
 				}
+				echo "
+				<tr bgcolor=\"#CCCCCC\"><td><b>Total:</b></td><td><b>$$totalDue</b></td><td><b>$$totalRaised</b></td><td></td><td></td></tr>
+				</table>
+				<br><center>Please print this page for your records.</center>";
+				unset($_SESSION['cart']);
 				if(!$found)
 				{
-					echo 'Your cart is empty.';
+					echo 'Uh, this shouldn\'t happen, your cart was empty.';
 				}
 			}
 			else
 			{
-				echo 'Your cart is empty.';
+				echo 'Uh, this shouldn\'t happen, your cart was empty.';
 			}
 			mysqli_close($db);
 		?>
