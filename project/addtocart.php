@@ -2,7 +2,7 @@
 //This page adds an item to the user's cart and then shows them their current cart
 session_start();
 
-$debug=true;
+$debug=false;
 
 //Get cart from the session
 $cart=$_SESSION['cart'];
