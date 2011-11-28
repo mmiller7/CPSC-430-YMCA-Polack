@@ -17,7 +17,7 @@ if(!isset($_SESSION["name"]))
 	<body>
 		<div id="wrap">
 			<?php include("loginheader.php"); ?>
-			<p><center><b>Card Categories</b></center></p>
+			<p><center><b>Select a Card</b></center></p>
 			<?php
 			$category=mysqli_real_escape_string($db, $_GET['category']);
 			$query="SELECT gc_id,store_name,card_value,fundraise_value FROM available_cards NATURAL JOIN card_type WHERE card_type = '".$category."'"; 
@@ -26,11 +26,23 @@ if(!isset($_SESSION["name"]))
 			$foundAny=false;
 			while($row=mysqli_fetch_array($result)){ 
 				$foundAny=true; //so we know it found at least 1 thing
-				echo $row['store_name']."<br>\n";
-				echo "Value is $".$row['card_value']."<br>\n";
-				echo "It'll raise $".$row['fundraise_value']."<br>\n";
-				echo "Gift card ID is ".$row['gc_id']."<br>\n";
-				echo "<br>\n"; 
+				$sname = $row['store_name'];
+				$cvalue = $row['card_value'];
+				$fvalue = $row['fundraise_value'];
+				echo "<form name=\"ordercard\" action=\"addtocart.php\" method=\"POST\">";
+					echo "<p><table align=center border=1>";
+					echo "<tr><th rowspan = 5><th colspan = 3>$sname</th></tr>";
+					echo "<tr><th align = left>Value<td>$$cvalue</td></th></tr>";
+					echo "<tr><th align = left>Raise Amount<td>$$fvalue</td></th></tr>";
+					echo "<tr><th align = left>Quantity";
+						echo "<td><select>";
+						for($i = 1; $i <=10; $i++){
+							echo"<option value=$i>$i</option>";
+						}
+						echo "</select></td></th></tr>";
+					echo "<tr><th align = center colspan =3><input type=\"submit\" name=\"submit\" value=\"Add to Cart\"></th></tr>";
+					echo "</table></p>";
+				echo "</form>";
 			}
 			if(!$foundAny){ //to display a message if there isn't any
 				echo "Nothing found for ".$_GET['category']."<br>\n";
