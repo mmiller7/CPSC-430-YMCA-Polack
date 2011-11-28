@@ -1,4 +1,5 @@
-<?php session_start();
+<?php 
+if(!isset($_SESSION)){session_start();} 
 include "dbconnect.php";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
