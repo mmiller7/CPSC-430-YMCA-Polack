@@ -15,9 +15,13 @@ form label {
 		color: black;
 		/*text-align: center;*/
 	}
-	A:link {color: white;}
-	A:visited {color: white;}
-	A:hover{color: yellow;}
+	#Navigation A:link {color: white;}
+	#Navigation A:visited {color: white;}
+	#Navigation A:hover{color: yellow;}
+	
+	A:link {color: #3366CC;}
+	A:visited {color: #8585AD;}
+	A:hover{color: blue;}
 	
 	div.contentBox
 	{
