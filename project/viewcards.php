@@ -31,9 +31,9 @@ if(!isset($_SESSION["name"]))
 				$fvalue = $row['fundraise_value'];
 				echo "<form name=\"ordercard\" action=\"addtocart.php\" method=\"POST\">";
 					echo "<input type=hidden name=gc_id value=".$row['gc_id'].">\n";
-					echo "<p><table align=center frame = border rules=all border=1>";
-					echo "<tr><th colspan = 1>Store Name</th><th colspan = 1>Value</th><th colspan = 1>Raised</th><th colspan = 1>Quantity</th><th colspan = 1></th></tr>\n";
-					echo "<tr><td>$sname</td><td>$$cvalue</td><td>$fvalue</td>";
+					echo "<p><table align=center frame = border rules=all border=1 cellpadding=15>";
+					echo "<tr bgcolor=\"#95918C\"><th colspan = 1>Store Name</th><th colspan = 1>Value</th><th colspan = 1>Raised</th><th colspan = 1>Quantity</th><th colspan = 1></th></tr>\n";
+					echo "<tr bgcolor=\"#CDC5C2\"><td>$sname</td><td>$$cvalue</td><td>$fvalue</td>";
 						echo "<td><select name=qty>";
 						for($i = 1; $i <=10; $i++){
 							echo"<option value=$i>$i</option>";
