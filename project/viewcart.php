@@ -21,7 +21,7 @@ if(!isset($_SESSION["name"]))
 			if(isset($_SESSION['cart']))
 			{
 				$found=false;
-				foreach($cart as $item)
+				foreach($_SESSION['cart'] as $item)
 				{
 					$found=true;
 					echo $item['qty']." of card ".$item['gc_id']."<br>\n";
