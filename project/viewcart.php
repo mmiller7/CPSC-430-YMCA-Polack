@@ -5,6 +5,9 @@ if(!isset($_SESSION["name"]))
   include("login.php");  
 	exit(0);
 }
+
+if($_POST['emptyCartNow'] == "yes")
+	unset($_SESSION['cart']);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
@@ -30,6 +33,21 @@ if(!isset($_SESSION["name"]))
 				{
 					echo 'Your cart is empty.';
 				}
+				else
+				{
+				?>
+					<table><tr>
+					<form name="emptyCart" action="viewcart.php" method="POST">
+					<input type="hidden" name="emptyCartNow" value="yes">
+					<td><input type="submit" name="confirmOrder" value="Empty Cart"></td>
+					</form>	
+					<form name="orderConfirmation" action="confirmOrder.php" method="POST">
+					<td><input type="submit" name="confirmOrder" value="Confirm Order"></td>
+					</form>
+					</tr>
+					</table>
+				<?php
+				}
 			}
 			else
 			{
@@ -38,9 +56,6 @@ if(!isset($_SESSION["name"]))
 			
 			?>
 			</br>
-			<form name="orderConfirmation" action="confirmOrder.php" method="POST">
-			<input type="submit" name="confirmOrder" value="Confirm Order">
-			<!-- <a href="confirmOrder.php">Confirm Order</a> -->
 			<?php include("footer.html"); ?>
 		</div>
 	</body>
