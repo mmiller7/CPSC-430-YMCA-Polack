@@ -69,9 +69,16 @@ if(!isset($_SESSION["name"]))
 							$fundraise_value=$row['fundraise_value'];
 							$card_quantity=$item['qty'];
 							
-							$query1= "INSERT INTO pending_orders (gc_id, fund_raise_value, card_quantity)	VALUES('".$gc_id."','".$fundraise_value."','".$card_quantity."')";
+							$query1= "INSERT INTO pending_orders
+							(gc_id, fund_raise_value, card_quantity)
+							VALUES('".$gc_id."','".$fundraise_value."','".$card_quantity."')";
 							$result1 = mysqli_query($db, $query1) or die("Error Querying Database");
-						
+							//insert into the junction table 
+							$query2="INSERT INTO accounts_and_orders(account_id) VALUES 
+							((SELECT account_id FROM user_account
+							WHERE family_name='".$_SESSION['name']."'))";
+							$result2=mysqli_query($db, $query2) or die("Error Querying Database");
+
 					
 	  				}
 					
