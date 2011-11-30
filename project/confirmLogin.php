@@ -15,6 +15,8 @@ $pw=$_POST['password'];
 				if ($row = mysqli_fetch_array($result)){
 				
 				$_SESSION['name']=$name;
+				$_SESSION['account_id']=$row['account_id'];
+				echo $_SESSION['account_id'];
 				//don't store password in session, could be unsecure.  Wasn't used anyway so we don't need it.
 
 				//echo "<p><font color=black>Thanks for logging in, $name family!</font></p>\n";
