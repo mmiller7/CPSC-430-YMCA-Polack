@@ -23,7 +23,6 @@ if($_POST['password']!=$_POST['confirmPassword'])
 //query sql for familyName
 $familyName=anti_xss($_POST['familyName']);
 include "dbconnect.php";
-$escapedFamilyName=mysqli_real_escape_string($db,$familyName);
 $compareQuery="SELECT family_name FROM user_account ";
 $compareResult=mysqli_query($db, $compareQuery) or die("Error Querying Database");
 if(!isset($checkName))
@@ -59,15 +58,18 @@ if(strlen(trim($errorMessage)) > 0)
 	//$pw    = check_input($_POST['password'],"A password is required.");
 	//$confirmPw = check_input($_POST['confirmPassword'],"Please confirm password.");
 	$familyName=anti_xss($_POST['familyName']);
+	$escapedFamilyName=mysqli_real_escape_string($db,$familyName);
 	$email=anti_xss($_POST['emailAddress']);
+	$escapedEmail=mysqli_real_escape_string($db,$email);
 	$pw=$_POST['password']; //don't anti-xss password because we don't care what they put.  It'll be mysql-escaped later and it's never printed so it isn't a script issue.  They can have all spaces for all we care so we don't want to change what they typed either.
+	$escapedPw=mysqli_real_escape_string($db,$pw);
 
 
 	
 	//Actually put them in the database
 	include "dbconnect.php";
 	$query= "INSERT INTO user_account(family_name,email,password) VALUES
-	('".$familyName."','".$email."','".$pw."')";
+	('".$escapedFamilyName."','".$escapedEmail."','".$escapedPw."')";
 	$result = mysqli_query($db, $query) or die("Error Querying Database");
 	mysqli_close($db);
 	
