@@ -69,10 +69,11 @@ if(!isset($_SESSION["name"]))
 							$fundraise_value=$row['fundraise_value'];
 							$card_quantity=$item['qty'];
 							
-							//insert into the junction table 
+							//insert into the junction table
+							$escapedName=mysqli_real_escape_string($db,$_SESSION['name']);
 							$query1="INSERT INTO accounts_and_orders(account_id) VALUES 
 							((SELECT account_id FROM user_account
-							WHERE family_name='".$_SESSION['name']."'))";
+							WHERE family_name='".$escapedName."'))";
 							$result1=mysqli_query($db, $query1) or die("Error Querying Database");
 							
 			
