@@ -25,7 +25,7 @@
 	|
 	<a href="viewaccount.php">View Account</a>
 	|
-	<a href="viewcart.php">View Cart</a>
+	<a href="viewcart.php">View Cart (<?php echo count($_SESSION['cart'])?>)</a>
 	|
 	<a href="browse.php">Order Giftcards</a>
 	<?php

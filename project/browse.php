@@ -20,13 +20,15 @@ if(!isset($_SESSION["name"]))
 			<p><center><b>Card Categories</b></center></p>
 			<?php
 			echo "<table align=center>\n";
-			$query="SELECT card_type FROM card_type";
+			//$query="SELECT card_type FROM card_type";
+			$query="SELECT card_type, count(gc_id) as count FROM card_type NATURAL JOIN available_cards GROUP BY card_type";
 			$result=mysqli_query($db, $query) or die("Error Querying Database");
 			while($row=mysqli_fetch_array($result)){
 				$card = $row['card_type'];
 				$cleanedUp = str_replace("_"," ",$row['card_type']);
 				$cleanedUp = ucwords($cleanedUp);
-				echo "<tr><td><a href=\"viewcards.php?category=$card\">$cleanedUp</a></td></tr>\n";
+				$count=$row['count'];
+				echo "<tr><td><a href=\"viewcards.php?category=$card\">$cleanedUp ($count)</a></td></tr>\n";
 			}
 			echo "</table>\n";
 			?>
