@@ -7,10 +7,10 @@ $pw=$_POST['password'];
 ?>
 			
 			<?php
-				$name=mysqli_real_escape_string($db,$name);
+				$escapedName=mysqli_real_escape_string($db,$name);
 				$pw=mysqli_real_escape_string($db,$pw);
 				
-				$query = "select * from user_account WHERE family_name = '$name' AND password ='$pw'";
+				$query = "select * from user_account WHERE family_name = '$escapedName' AND password ='$pw'";
 				$result = mysqli_query($db, $query);
 				if ($row = mysqli_fetch_array($result)){
 				
