@@ -16,7 +16,16 @@ $pw=$_POST['password'];
 				
 				$_SESSION['name']=$name;
 				$_SESSION['account_id']=$row['account_id'];
-				echo $_SESSION['account_id'];
+				$_SESSION['isAdmin']=false;
+				
+				if($row['admin']=='y')
+				{
+					$_SESSION['isAdmin']=true;
+					echo "User is admin";
+					echo "</br>";
+				}
+				
+				//echo $_SESSION['account_id'];
 				//don't store password in session, could be unsecure.  Wasn't used anyway so we don't need it.
 
 				//echo "<p><font color=black>Thanks for logging in, $name family!</font></p>\n";

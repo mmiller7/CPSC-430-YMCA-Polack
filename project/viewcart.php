@@ -18,8 +18,23 @@ if($_POST['emptyCartNow'] == "yes")
 	</head>
 	<body>
 		<div id="wrap">
-			<?php include("loginheader.php"); ?>
-			<?php //echo 'This is the view cart page';
+			<?php 
+				if($_SESSION['isAdmin']==true)
+					{
+						include("adminheader.php");
+					}
+					else
+					{
+						include("loginheader.php"); 
+					}
+			?>
+			<?php //echo 'This is the view cart page'; 
+			
+			$date_today=mktime(0, 0, 0, date("m"), date("d"), date("y"));
+			echo "</br>";
+			$date_today= date("m/d/y", $date_today);
+			echo $date_today;
+			echo "</br>";
 			
 		include("dbconnect.php");
     $totalDue=0;

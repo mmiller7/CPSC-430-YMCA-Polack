@@ -15,7 +15,16 @@ if(!isset($_SESSION["name"]))
 	</head>
 	<body>
 		<div id="wrap">
-			<?php include("loginheader.php"); ?>
+			<?php
+			if($_SESSION['isAdmin']==true)
+					{
+						include("adminheader.php");
+					}
+					else
+					{
+						include("loginheader.php"); 
+					}
+			?>
 			<?php echo 'This is the view account page'; ?>
 			<?php include("footer.html"); ?>
 		</div>

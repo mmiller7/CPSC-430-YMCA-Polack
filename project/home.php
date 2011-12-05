@@ -15,9 +15,20 @@ if(!isset($_SESSION["name"]))
 	</head>
 	<body>
 		<div id="wrap">
-			<?php 	include("loginheader.php"); 
-					if(isset($SESSION['name'])){ echo 'Welcome '; echo $SESSION["name"]; echo ' family!'; }
+			<?php
+					if($_SESSION['isAdmin']==true)
+					{
+						include("adminheader.php");
+					}
+					else
+					{
+						include("loginheader.php"); 
+					}
+					
+					if(isset($_SESSION['name'])){ echo 'Welcome '; echo $_SESSION["name"]; echo ' family!'; }
 					else{ echo 'Welcome Home!'; }
+					
+					//echo $_SESSION['account_id'];
 					include("footer.html"); 
 			?>
 		</div>

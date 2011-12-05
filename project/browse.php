@@ -16,7 +16,16 @@ if(!isset($_SESSION["name"]))
 	</head>
 	<body>
 		<div id="wrap">
-			<?php include("loginheader.php"); ?>
+			<?php
+				if($_SESSION['isAdmin']==true)
+					{
+						include("adminheader.php");
+					}
+					else
+					{
+						include("loginheader.php"); 
+					}
+			?>
 			<p><center><b>Card Categories</b></center></p>
 			<?php
 			echo "<table align=center>\n";

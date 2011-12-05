@@ -20,6 +20,8 @@ if(!isset($_SESSION["name"]))
 		<?php include("loginheader.php"); ?>
 		
 		<?php
+		$date_today=mktime(0, 0, 0, date("m"), date("d"), date("y"));
+		$date_today= date("m/d/y", $date_today);
 		$totalDue=0;
 		$totalRaised=0;
 		if(isset($_SESSION['cart']))
@@ -78,9 +80,10 @@ if(!isset($_SESSION["name"]))
 			
 							
 							$query2= "INSERT INTO pending_orders
-							(order_id, gc_id,fund_raise_value, card_quantity)
+							(order_id, gc_id,fund_raise_value, card_quantity,order_date)
 							VALUES((SELECT MAX(order_id) FROM accounts_and_orders 
-							WHERE account_id='".$_SESSION['account_id']."'),'".$gc_id."','".$fundraise_value."','".$card_quantity."')";
+							WHERE account_id='".$_SESSION['account_id']."'),'".$gc_id."',
+							'".$fundraise_value."','".$card_quantity."','".$date_today."')";
 							$result2 = mysqli_query($db, $query2) or die("Error Querying Database2");
 							
 							

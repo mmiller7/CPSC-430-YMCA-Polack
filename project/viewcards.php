@@ -16,7 +16,17 @@ if(!isset($_SESSION["name"]))
 	</head>
 	<body>
 		<div id="wrap">
-			<?php include("loginheader.php"); ?>
+			<!-- admin or not -->
+			<?php 
+				if($_SESSION['isAdmin']==true)
+					{
+						include("adminheader.php");
+					}
+					else
+					{
+						include("loginheader.php"); 
+					}
+			?>
 			<p><center><b>Select a Card</b></center></p>
 			<?php
 			$category=mysqli_real_escape_string($db, $_GET['category']);
